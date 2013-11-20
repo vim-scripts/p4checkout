@@ -1,0 +1,86 @@
+*p4checkout.txt*   Painless Perforce checkouts!
+*p4checkout*
+                     __ __       __              __               __          ~
+              ____  / // / _____/ /_  ___  _____/ /______  __  __/ /_         ~
+             / __ \/ // /_/ ___/ __ \/ _ \/ ___/ //_/ __ \/ / / / __/         ~
+            / /_/ /__  __/ /__/ / / /  __/ /__/ ,< / /_/ / /_/ / /_           ~
+           / .___/  /_/  \___/_/ /_/\___/\___/_/|_|\____/\__,_/\__/           ~
+          /_/                                                                 ~
+                                                                              ~
+===============================================================================
+CONTENTS                                                  *p4checkout-contents*
+   
+   1.Intro............................................|p4checkout-intro|
+   2.Functionality....................................|p4checkout-functionality|
+   3.Setup............................................|p4checkout-setup|
+      3.1.The p4root.txt file.........................|p4checkout-p4root|
+   4.About............................................|p4checkout-about|
+   5.License..........................................|p4checkout-license|
+
+===============================================================================
+1. Intro                                                     *p4checkout-intro*
+
+p4checkout is a simple plugin which uses perforce to check out all read-only
+files on edit.  It uses the p4 command-line utilities, which must be installed
+and available in the PATH.
+
+Support for multiple client workspaces is available through the use of the
+p4root.txt file described in |p4checkout-p4root|.
+
+===============================================================================
+2. Functionality                                     *p4checkout-functionality*
+
+This plugin attempts a perforce sync and checkout whenever a read-only file is
+modified.  The workspace mapping and other parameters are determined by a
+p4root.txt file, as described in |p4checkout-p4root|.
+
+===============================================================================
+3. Setup                                                     *p4checkout-setup*
+
+Very little setup is required.  This plugin takes no options at present, and
+all configuration is done via |p4checkout-p4root| (have you figured out yet
+which section you need to be looking at?)
+
+===============================================================================
+3.1. The p4root.txt file                                    *p4checkout-p4root*
+
+The p4root.txt file is where all configuration of this plugin is done.  Each
+line in the p4root.txt file is of the format:
+
+var = value
+
+An example p4root.txt is shown below.
+
+p4workspace = my_workspace
+p4path = //depot/my_path
+p4user = dummy
+p4pass = dummy_password
+p4port = my_hostname:1666
+
+The only required value is p4path, which gives the repository location of the
+directory containing p4root.txt.  All other values are optional; the defaults
+given in the P4CLIENT, P4USER, P4PASSWD, and P4PORT environment
+variables will be used if they are not present.
+
+p4root.txt does not need to be located in the same directory as any files to
+be modified.  As long as it is above the modified file in the directory tree,
+it will be detected and the repository path to the modified file will be
+extrapolated appropriately.
+
+===============================================================================
+4. About                                                     *p4checkout-about*
+
+The maintainer of this plugin is:
+   Adam Slater (github:aslater)
+
+Find the latest version of p4checkout at:
+
+   http://github.com/aslater/p4checkout
+
+===============================================================================
+5. License                                                 *p4checkout-license*
+
+p4checkout is released under the GPL v2.
+See http://www.gnu.org/licenses/gpl-2.0.html
+
+vim:tw=78:sw=4:ft=help:norl:

@@ -1,0 +1,5 @@
+p4workspace = my_workspace
+p4path = //depot/my_path
+p4user = dummy
+p4pass = dummy_password
+p4port = my_hostname:1666
