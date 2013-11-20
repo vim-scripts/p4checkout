@@ -78,7 +78,7 @@ function! p4checkout#IsUnderPerforce()
          "echo 'replacing ' . p4localdir . ' with ' . p4repodir . ' in ' . expand('%:p')
          let b:p4path = substitute(expand("%:p"), escape(b:p4localdir, ' \'), escape(b:p4repodir, ' \'), "")
          let b:p4path = substitute(b:p4path, '\', '/', 'g')
-         echo "got " . b:p4path
+         "echo "got " . b:p4path
       endif
       let b:p4checked = 1
    endif
@@ -90,8 +90,8 @@ function! p4checkout#P4Checkout()
    if exists("b:p4path")
       call system(b:p4cmd . ' sync ' . b:p4path . ' > /dev/null')
       call system(b:p4cmd . ' edit ' . b:p4path . ' > /dev/null')
-      echo b:p4cmd . ' sync ' . b:p4path . ' > /dev/null'
-      echo b:p4cmd . ' edit ' . b:p4path . ' > /dev/null'
+      "echo b:p4cmd . ' sync ' . b:p4path . ' > /dev/null'
+      "echo b:p4cmd . ' edit ' . b:p4path . ' > /dev/null'
       if v:shell_error == 0
          set noreadonly
          edit
